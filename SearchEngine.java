@@ -11,7 +11,7 @@ class Handler implements URLHandler {
         if(path.contains("/add")){
             String[] word = url.getQuery().split("=");
             words.add(word[1]);
-            return "Word added";
+            return "Word added: " + word[1];
         } else if (path.contains("/search")){
             String[] search = url.getQuery().split("=");
             String results = "the search results are: ";
@@ -21,6 +21,7 @@ class Handler implements URLHandler {
                     results = results.concat(", ");
                 }
             }
+            results = results.substring(0, results.length()-2);
             return results;
         } else {
             return "404 not found";
