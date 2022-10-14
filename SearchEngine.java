@@ -1,22 +1,17 @@
 import java.io.IOException;
 import java.net.URI;
-import java.util.ArrayList;
+import java.util.HashSet;
 class Handler implements URLHandler {
     // The one bit of state on the server: a number that will be manipulated by
     // various requests.
     int num = 0;
-    ArrayList<String> words = new ArrayList<String>();
+    HashSet<String> words = new HashSet<String>();
     public String handleRequest(URI url) {
         String path = url.getPath();
         if(path.contains("/add")){
             String[] word = url.getQuery().split("=");
-            for(int i = 0; i < word.length;i++){
-                words.add(word[i]);
-            }
-            return words.toString();
-            //String[] word = url.getQuery().split("=");
-            //words.add(word[1]);
-            //return "Word added";
+            words.add(word[1]);
+            return "Word added";
         } else if (path.contains("/search")){
             String[] search = url.getQuery().split("=");
             String results = "the search results are: ";
